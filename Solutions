@@ -1,0 +1,35 @@
+//String Array:
+
+public class StringArrayTest  {
+    
+    public static String[] generateStringArray(Integer numbers)
+    {
+        String[] names=new List<String>();
+        for(Integer i=0;i<numbers;i++)
+        {
+            names.add('Test '+ i);
+            System.debug(names[i]);
+        }
+        
+        return names;
+    }
+}
+
+//Inserting new account:
+
+public class AccountHandler {
+
+    public static Account insertNewAccount(String name){
+        
+        Account acct=new Account();
+        acct.Name=name;
+        
+        try{
+            insert acct;
+        }
+        catch(Exception e){
+            return null;
+        }
+        return acct;
+    }
+}
