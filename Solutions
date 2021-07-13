@@ -33,3 +33,31 @@ public class AccountHandler {
         return acct;
     }
 }
+
+//List of contacts displaying in Apex Class ContactSearch : 
+//Taking two strings as parameterms and then matching the lastname with the firstname and matching the MailingPostalCode with the second string
+
+public class ContactSearch {
+
+    public static List<Contact> searchForContacts(String lname,String mailingcode){
+        
+        List<Contact> con=[Select Name,Id from Contact where LastName=:lname and MailingPostalCode=:mailingcode];
+        System.debug(con);
+        
+        return con;       
+        
+    }
+}
+
+//To create an Apex class that returns both contacts and leads that have first or last name matching the incoming parameter.
+
+public class ContactAndLeadSearch {
+
+    public static List<List<SObject>> searchContactsAndLeads(String sword)
+    {
+        String searchQuery='Find \'' +sword + '\' IN ALL FIELDS RETURNING Contact(FirstName,LastName),Lead(Name,FirstName,LastName)';
+        List<List<SObject>> searchL = search.query(searchQuery);
+        System.debug(searchL);
+        return searchL;
+    }
+}
